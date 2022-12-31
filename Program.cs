@@ -1,4 +1,6 @@
-﻿namespace EmployeeWageNonStatic
+﻿using EmployeeWageProblem;
+
+namespace EmployeeWageNonStatic
 {
     public class Method
     {
@@ -7,6 +9,7 @@
 
             Console.WriteLine("***** Welcome to the employee wage computation Program for Static Methods. *****");
 
+            EmployeeWageStatic.Employee();
         }
     }
 }
