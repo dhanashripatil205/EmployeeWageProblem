@@ -1,4 +1,14 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
 
 namespace EmployeeWageProblem
 {
@@ -6,28 +16,38 @@ namespace EmployeeWageProblem
     {
         public const int Is_Full_Time = 1;
         public const int Is_Part_Time = 2;
-        private string company;
-        private int Emp_Rate_Per_Hr;
-        private int Max_Days_In_Month;
-        private int Max_Hrs_In_Month;
-        int totalEmpWage;
 
-        public EmployeeWageStatic(string company, int Emp_Rate_Per_Hr, int Max_Days_In_Month, int Max_Hrs_In_Month)
+        private int NumOfComany = 0;
+        private CompanyEmpWage[] companyEmpWageArray;
+
+        public EmployeeWageStatic()
         {
-            this.company = company;
-            this.Emp_Rate_Per_Hr = Emp_Rate_Per_Hr;
-            this.Max_Days_In_Month = Max_Days_In_Month;
-            this.Max_Hrs_In_Month = Max_Hrs_In_Month;
+            this.companyEmpWageArray = new CompanyEmpWage[5];
+
         }
-        public void ComputeEmpWage()
+
+        public void addCompanyEmpWage(string company, int Emp_Rate_Per_Hr, int Max_Days_In_Month, int Max_Hrs_In_Month)
         {
+            companyEmpWageArray[this.NumOfComany] = new CompanyEmpWage(company, Emp_Rate_Per_Hr , Max_Days_In_Month , Max_Hrs_In_Month);
+            NumOfComany++;
+        }
+        public void computeEmpWage()
+        {
+            for (int i = 0; i < NumOfComany; i++)
+            {
+                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                Console.WriteLine(this.companyEmpWageArray[i].toString());
+            }
+        }
+        private int computeEmpWage(CompanyEmpWage companyEmpWage)
+        {
+
 
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 
             Console.WriteLine();
-            Console.WriteLine("@@@@@@@@@@@ " + company + " @@@@@@@@@@");
 
-            while (totalEmpHrs <= this.Max_Hrs_In_Month && totalWorkingDays < this.Max_Days_In_Month)
+            while (totalEmpHrs <= companyEmpWage.Max_Hrs_In_Month && totalWorkingDays < companyEmpWage.Max_Days_In_Month)
             {
                 totalWorkingDays++;
 
@@ -53,15 +73,9 @@ namespace EmployeeWageProblem
                 Console.WriteLine("Day# : " + totalWorkingDays + "  Total employee hours are :- " + empHrs);
 
             }
-            totalEmpWage = totalEmpHrs * this.Emp_Rate_Per_Hr;
-            Console.WriteLine("Total employee Wage is :- " + totalEmpWage);
-        }
+            return totalEmpHrs * companyEmpWage.Emp_Rate_Per_Hr;
 
-        public string Return()
-        {
-            return "Total employee wage of " + this.company + " is :-  " +this.totalEmpWage;
 
         }
-
     }
 }
