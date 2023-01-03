@@ -1,24 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.CompilerServices;
 
 namespace EmployeeWageProblem
 {
     public class EmployeeWageStatic
     {
-        const int Is_Full_Time = 1;
-        const int Is_Part_Time = 2;
+        public const int Is_Full_Time = 1;
+        public const int Is_Part_Time = 2;
+        private string company;
+        private int Emp_Rate_Per_Hr;
+        private int Max_Days_In_Month;
+        private int Max_Hrs_In_Month;
+        int totalEmpWage;
 
-        public static void Employee(string company , int Emp_Rate_Per_Hr , int Max_Days_In_Month , int Max_Hrs_In_Month)
+        public EmployeeWageStatic(string company, int Emp_Rate_Per_Hr, int Max_Days_In_Month, int Max_Hrs_In_Month)
+        {
+            this.company = company;
+            this.Emp_Rate_Per_Hr = Emp_Rate_Per_Hr;
+            this.Max_Days_In_Month = Max_Days_In_Month;
+            this.Max_Hrs_In_Month = Max_Hrs_In_Month;
+        }
+        public void ComputeEmpWage()
         {
 
-        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
 
-            Console.WriteLine(company);
+            Console.WriteLine();
+            Console.WriteLine("@@@@@@@@@@@ " + company + " @@@@@@@@@@");
 
-            while (totalEmpHrs <= Max_Hrs_In_Month && totalWorkingDays < Max_Days_In_Month)
+            while (totalEmpHrs <= this.Max_Hrs_In_Month && totalWorkingDays < this.Max_Days_In_Month)
             {
                 totalWorkingDays++;
 
@@ -41,11 +50,17 @@ namespace EmployeeWageProblem
                 }
 
                 totalEmpHrs = totalEmpHrs + empHrs;
-                Console.WriteLine("Day# : " + totalWorkingDays + "  Total employee hours are :- " + totalEmpHrs);
+                Console.WriteLine("Day# : " + totalWorkingDays + "  Total employee hours are :- " + empHrs);
 
             }
-            int totalEmpWage = totalEmpHrs * Emp_Rate_Per_Hr;
+            totalEmpWage = totalEmpHrs * this.Emp_Rate_Per_Hr;
             Console.WriteLine("Total employee Wage is :- " + totalEmpWage);
+        }
+
+        public string Return()
+        {
+            return "Total employee wage of " + this.company + " is :-  " +this.totalEmpWage;
+
         }
 
     }
