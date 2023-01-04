@@ -12,7 +12,7 @@ namespace EmployeeWageProblem
         public const int IS_FULL_TIME = 2;
 
         private List<CompanyEmpWage> CompanywageArr;
-        private int noOfCompany = 0;
+
         public Employee()
         {
             CompanywageArr = new List<CompanyEmpWage>();
@@ -20,8 +20,8 @@ namespace EmployeeWageProblem
         public void addCompanies(string company, int Wage_Per_Hour, int Max_Days_IN_Month, int Max_HrsInMonth)
         {
             CompanyEmpWage Emp = new CompanyEmpWage(company, Wage_Per_Hour, Max_Days_IN_Month, Max_HrsInMonth);
-            AddCompanyEmpWageToList(Emp);
             this.CompanywageArr.Add(Emp);
+
         }
 
         public void EmpComputation()
@@ -36,7 +36,7 @@ namespace EmployeeWageProblem
 
         private int EmpComputation(CompanyEmpWage emp)
         {
-            int empHour;
+            int empHour = 0;
             int totalHours = 0;
             int totalDays = 0;
             int totalSallery = 0;
