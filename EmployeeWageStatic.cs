@@ -43,7 +43,8 @@ namespace EmployeeWageProblem
         {
 
 
-            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+            int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0; int totalSallery = 0; int totalDays = 0;
+
 
             Console.WriteLine();
 
@@ -58,22 +59,33 @@ namespace EmployeeWageProblem
                 {
                     case Is_Full_Time:
                         empHrs = 8;
+                        totalSallery = companyEmpWage.Emp_Rate_Per_Hr * empHrs;
+
                         break;
 
                     case Is_Part_Time:
                         empHrs = 4;
+                        totalSallery = companyEmpWage.Emp_Rate_Per_Hr * empHrs;
+
                         break;
 
                     default:
                         empHrs = 0;
+                        totalSallery = companyEmpWage.Emp_Rate_Per_Hr * empHrs;
+
                         break;
                 }
 
                 totalEmpHrs = totalEmpHrs + empHrs;
-                Console.WriteLine("Day# : " + totalWorkingDays + "  Total employee hours are :- " + empHrs);
+                //Console.WriteLine("Day# : " + totalWorkingDays + "  Total employee hours are :- " + empHrs);
+                if (totalEmpHrs <= companyEmpWage.Max_Hrs_In_Month)
+                {
+                    companyEmpWage.totalEmpWage += totalSallery;
 
+                    Console.WriteLine("Day# : " + totalDays + " =>  emp Hrs : " + empHrs + " =>  EmpWage: " + totalSallery);
+                }
             }
-            return totalEmpHrs * companyEmpWage.Emp_Rate_Per_Hr;
+            return companyEmpWage.totalEmpWage;
 
 
         }
