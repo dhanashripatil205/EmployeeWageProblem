@@ -6,34 +6,28 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageProblem
 {
-    
     public class CompanyEmpWage
     {
         public string company;
-        public int Emp_Rate_Per_Hr;
-        public int Max_Days_In_Month;
-        public int Max_Hrs_In_Month;
-        public int totalEmpWage;
-
-        public CompanyEmpWage(string company, int Emp_Rate_Per_Hr, int Max_Days_In_Month, int Max_Hrs_In_Month)
+        public int Wage_Per_Hour;
+        public int Max_Days_IN_Month;
+        public int Max_HrsInMonth;
+        public int sallery;
+        public CompanyEmpWage(string company, int Wage_Per_Hour, int Max_Days_IN_Month, int Max_HrsInMonth)
         {
-
             this.company = company;
-            this.Emp_Rate_Per_Hr = Emp_Rate_Per_Hr;
-            this.Max_Days_In_Month = Max_Days_In_Month;
-            this.Max_Hrs_In_Month = Max_Hrs_In_Month;
+            this.Wage_Per_Hour = Wage_Per_Hour;
+            this.Max_Days_IN_Month = Max_Days_IN_Month;
+            this.Max_HrsInMonth = Max_HrsInMonth;
 
         }
-
-        public void setTotalEmpWage(int totalEmpWage)
+        public void setEmpWage(int sallery)
         {
-            this.totalEmpWage = totalEmpWage;
+            this.sallery = sallery;
         }
-
-        public string toString()
+        public string Return()
         {
-            return "Total employee wage of " + this.company + " is :-  " + this.totalEmpWage;
+            return ("\n Total employee wage of " + this.company + " is :-  " + this.sallery);
         }
-
     }
 }
