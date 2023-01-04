@@ -1,18 +1,16 @@
-﻿using EmployeeWageProblem;
-
-namespace EmployeeWageNonStatic
+﻿namespace EmployeeWageProblem
 {
-    public class Method
+    public class Wage
     {
         public static void Main(string[] args)
         {
+            Employee obj = new Employee();
 
-            Console.WriteLine("***** Welcome to the employee wage computation Program for Static Methods. *****");
+            obj.addCompanies("deloitte", 20, 15, 90);
 
-            EmployeeWageStatic bridge = new EmployeeWageStatic();
-              bridge.addCompanyEmpWage("BridgeLabz", 20, 10, 50);
-              bridge.addCompanyEmpWage("MicroLand", 20, 10, 50);
-              bridge.computeEmpWage();
+            obj.addCompanies("Reliance", 45, 23, 150);
+
+            obj.EmpComputation();
 
         }
     }
