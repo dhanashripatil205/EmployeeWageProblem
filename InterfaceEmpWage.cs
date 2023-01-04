@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeWageProblem
 {
-    public interface Iemployeewage
+    public interface InterfaceEmpWage
     {
         public void addCompanies(string Company, int wagePerHour, int maxdays, int maxhours);
 
