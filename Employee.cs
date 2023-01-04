@@ -12,15 +12,18 @@ namespace EmployeeWageProblem
         public const int IS_FULL_TIME = 2;
 
         private List<CompanyEmpWage> CompanywageArr;
+        private Dictionary<string, CompanyEmpWage> getting;
 
         public Employee()
         {
             CompanywageArr = new List<CompanyEmpWage>();
+            getting = new Dictionary<string, CompanyEmpWage>();
         }
         public void addCompanies(string company, int Wage_Per_Hour, int Max_Days_IN_Month, int Max_HrsInMonth)
         {
             CompanyEmpWage Emp = new CompanyEmpWage(company, Wage_Per_Hour, Max_Days_IN_Month, Max_HrsInMonth);
             this.CompanywageArr.Add(Emp);
+            this.getting.Add(company, Emp);
 
         }
 
@@ -78,6 +81,12 @@ namespace EmployeeWageProblem
                 }
             }
             return emp.sallery;
+
+        }
+        public int getTotalwage(string company)
+        {
+            return this.getting[company].sallery;
+
         }
 
     }
